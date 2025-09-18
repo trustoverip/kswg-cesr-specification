@@ -1513,51 +1513,61 @@ Post-quantum or quantum-safe cryptography deals with techniques that maintain th
 
 To elaborate, a post-quantum attack that may practically invert the one-way public key generation (ECC scalar multiplication) function using quantum computation must first invert the digest of the public key using non-quantum computation. Pre-quantum cryptographic strength is, therefore, not weakened post-quantum. A surprise quantum capability may no longer be a vulnerability. Strong one-way hash functions, such as 256-bit (32-byte) Blake2, Blake3, and SHA3, with 128-bits of pre-quantum strength, maintain that strength post-quantum. Furthermore, hiding the pre-rotation public keys does not impose any additional storage burden on the controller because the controller must always be able to reproduce or recover the associated private keys to sign the associated rotation operation. Hidden public keys may be compactly expressed as Base64 encoded qualified public keys digests (hidden) where the digest function is indicated in the derivation code.
 
+[//]: # (\newpage)
+
+[//]: # (\makebibliography)
+
 ## Bibliography
 
-### Normative section
+[[spec]]
 
-<a id="KERI">1</a><a id="ref1"></a>. [KERI specification](https://trustoverip.github.io/tswg-keri-specification/)
+[1]. KERI
+[1]: https://trustoverip.github.io/tswg-keri-specification/
 
-<a id="RFC20">2</a><a id="ref2"></a>. ASCII, RFC20 https://www.rfc-editor.org/rfc/rfc20
+[2]. ASCII, RFC20
+[2]: https://www.rfc-editor.org/rfc/rfc20
 
-<a id="MGPK">3</a><a id="ref3"></a>. [MGPK specification](https://github.com/msgpack/msgpack/blob/master/spec.md)
+[3]. MGPK
+[3]: https://github.com/msgpack/msgpack/blob/master/spec.md
 
-<a id="RAET">16</a><a id="ref16"></a>. Reliable Asynchronous Event Transport, RAET, https://github.com/RaetProtocol/raet
+[4]. BOM, UTF Byte Order Mark
+[4]: https://en.wikipedia.org/wiki/Byte_order_mark
 
-<a id="RFC4627">18</a><a id="ref18"></a>. RFC4627 [The application/json Media Type for JavaScript Object Notation (JSON)](https://www.rfc-editor.org/rfc/rfc4627). D. Crockford; 2006-07. Status: Informational.
+[5]. DLog, Discrete Logarithm Problem
+[5]: https://en.wikipedia.org/wiki/Discrete_logarithm
 
-<a id="RFC4648">19</a><a id="ref19"></a>. RFC4648 [The Base16, Base32, and Base64 Data Encodings](https://www.rfc-editor.org/rfc/rfc4648). S. Josefsson; 2006-10. Status: Proposed Standard.
+[6]. NaCL
+[6]: https://nacl.cr.yp.to
 
-<a id="RFC6901">20</a><a id="ref20"></a>. RFC6901 [JavaScript Object Notation (JSON) Pointer](https://www.rfc-editor.org/rfc/rfc6901). P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed.; 2013-04. Status: Proposed Standard.
+[7]. MultiCodec Multiformats Codecs, MultiCodec
+[7]: https://github.com/multiformats/multicodec
 
-<a id="RFC8949">21</a><a id="ref21"></a>. RFC8949 [Concise Binary Object Representation (CBOR)](https://www.rfc-editor.org/rfc/rfc8949). C. Bormann; P. Hoffman; 2020-12. Status: Internet Standard.
+[8]. MultiCodec Table, MCTable
+[8]: https://github.com/multiformats/multicodec/blob/master/table.csv
 
-### Informative section
+[9]. IPFS MultiFormats, IPFS
+[9]: https://richardschneider.github.io/net-ipfs-core/api/Ipfs.Registry.HashingAlgorithm.html
 
-<a id="BOM">4</a><a id="ref4"></a>. BOM, UTF Byte Order Mark, https://en.wikipedia.org/wiki/Byte_order_mark
+[10]. Base58Check Encoding, Base58Check
+[10]: https://en.bitcoin.it/wiki/Base58Check_encoding
 
-<a id="Dlog">5</a><a id="ref5"></a>. DLog, Discrete Logarithm Problem, https://en.wikipedia.org/wiki/Discrete_logarithm
+[11]. Wallet Import Format ECDSA Base58Check, WIF
+[11]: https://en.bitcoin.it/wiki/Wallet_import_format
 
-<a id="BOM">6</a><a id="ref6"></a>. NaCL, https://nacl.cr.yp.to
+[12]. Binary to Text Encoding, Bin2Txt
+[12]: https://en.wikipedia.org/wiki/Binary-to-text_encoding
 
-<a id="MCMFormat">7</a><a id="ref7"></a>. MultiCodec Multiformats Codecs, [MultiCodec](https://github.com/multiformats/multicodec)
+[13]. UTF8, UTF-8 Unicode
+[13]: https://en.wikipedia.org/wiki/UTF-8
 
-<a id="MCTable">8</a><a id="ref8"></a>. MultiCodec Table, [MCTable](https://github.com/multiformats/multicodec/blob/master/table.csv)
+[14]. Latin1
+[14]: https://en.wikipedia.org/wiki/ISO/IEC_8859-1
 
-<a id="IPFS">9</a><a id="ref9"></a>. IPFS MultiFormats, IPFS https://richardschneider.github.io/net-ipfs-core/api/Ipfs.Registry.HashingAlgorithm.html
+[15]. Simple Text Oriented Messaging Protocol, STOMP
+[15]: https://stomp.github.io
 
-<a id="Base58Check">10</a><a id="ref10"></a>. Base58Check Encoding, [Base58Check](https://en.bitcoin.it/wiki/Base58Check_encoding)
+[16]. Reliable Asynchronous Event Transport, RAET
+[16]: https://github.com/RaetProtocol/raet
 
-<a id="WIF">11</a><a id="ref11"></a>. Wallet Import Format ECDSA Base58Check, WIF,
-[Wallet Import Format](https://en.bitcoin.it/wiki/Wallet_import_format)
-
-<a id="Bin2Txt">12</a><a id="ref12"></a>. Binary to Text Encoding, Bin2Txt [Binary to Text Encoding](https://en.wikipedia.org/wiki/Binary-to-text_encoding)
-
-<a id="UTF8">13</a><a id="ref13"></a>. UTF8, [UTF-8 Unicode](https://en.wikipedia.org/wiki/UTF-8)
-
-<a id="Latin1">14</a><a id="ref14"></a>. Latin1 https://en.wikipedia.org/wiki/ISO/IEC_8859-1
-
-<a id="STOMP">15</a><a id="ref15"></a>. Simple Text Oriented Messaging Protocol, STOMP, https://stomp.github.io
-
-<a id="Nathan-NDM14">17</a><a id="ref17"></a>. Analysis of the Effect of Core Affinity on High-Throughput Flows, Affinity, https://crd.lbl.gov/assets/Uploads/Nathan-NDM14.pdf
+[17]. Analysis of the Effect of Core Affinity on High-Throughput Flows, Affinity
+[17]: https://crd.lbl.gov/assets/Uploads/Nathan-NDM14.pdf
