@@ -62,7 +62,7 @@ Let `T(cat(b[k]))` denote the concrete transformation of a given concatenated se
 
 Let `B(cat(t[k]))` denote the concrete transformation of a given concatenated set of Primitives, `cat(t[k])` from the T domain to the B domain.
 
-The concatenation Composability property or Composability for short, between T and B is expressed as follows:
+The [[ref: Concatenation Composability]] property or Composability for short, between T and B is expressed as follows:
 
 Given a set of Primitives `b[k]` and `t[k]` and transformations `T(B)` and `B(T)` such that `t[k] = T(b[k])` and `b[k] = B(t[k])` for all `k`, then `T(B)` and `B(T)` are jointly concatenation composable if and only if,
 
@@ -70,7 +70,7 @@ Given a set of Primitives `b[k]` and `t[k]` and transformations `T(B)` and `B(T)
 T(cat(b[k]))=cat(T(b[k])) and B(cat(t[k]))=cat(B(t[k])) for all k.
 ```
 
-Basically, Composability (over concatenation) means that the transformation of a set (as a whole) of concatenated Primitives is equal to the concatenation of the set of individually transformed Primitives. Each and every Primitive or Count Code group of primitives MUST satisfy the Concatenation Composability property.
+Basically, Composability (over concatenation) means that the transformation of a set (as a whole) of concatenated Primitives is equal to the concatenation of the set of individually transformed Primitives. Each and every Primitive or Count Code group of primitives MUST satisfy the [[ref: Concatenation Composability]] property.
 
 For example, suppose there are two Primitives in the Text domain, namely, `t[0]` and `t[1]` that each transforms, respectively, to primitives in the Binary domain, namely, `b[0]` and `b[1]`. The transformation duals, `B(T)` and `T(B)`, are composable if and only if,
 
@@ -229,7 +229,7 @@ Similarly, a 64-byte raw binary value needs 2 lead bytes to make the combination
 
 In summary, there are two possibilities for CESR's coding scheme to ensure a composable 24-bit alignment. The first is to add trailing pad characters post-conversion. The second is to add leading pad bytes to the value portion pre-conversion, effectively placing the padding after the framing code but before the value i.e. mid-padding. Because of the greater readability of the value portion of both the fully qualified Text, ‘T’, or fully qualified Binary, ‘B’, domain representations, the second approach was chosen for CESR.
 
-Therefore all CESR primitives MUST employ mid-padding as defined above.
+Therefore all CESR primitives MUST employ [[ref: mid-padding]] as defined.
 
 #### Multiple code table approach
 
@@ -1537,7 +1537,7 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 <a id="RFC8259">23</a><a id="ref23"></a>. IETF RFC-8259 [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
 
-<a id="BLAKE3">23</a><a id="ref24"></a>. Black3 Specification [Blake3](https://github.com/BLAKE3-team/BLAKE3-specs). J. O’Connor; J-P. Aumasson; S. Neves ; Z. Wilcox-O’Hearn.  Version 20211102173700. 
+<a id="BLAKE3">24</a><a id="ref24"></a>. Black3 Specification [Blake3](https://github.com/BLAKE3-team/BLAKE3-specs). J. O’Connor; J-P. Aumasson; S. Neves ; Z. Wilcox-O’Hearn.  Version 20211102173700. 
 
 ### Informative section
 
