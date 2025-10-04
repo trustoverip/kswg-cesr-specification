@@ -1521,7 +1521,7 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 <a id="RFC20">2</a><a id="ref2"></a>. ASCII, RFC20 https://www.rfc-editor.org/rfc/rfc20
 
-<a id="MGPK">3</a><a id="ref3"></a>. [MGPK specification](https://github.com/msgpack/msgpack/blob/master/spec.md)
+<a id="MGPK">3</a><a id="ref3"></a>. MGPK specification [MGPK](https://github.com/msgpack/msgpack/blob/master/spec.md)
 
 <a id="RAET">16</a><a id="ref16"></a>. Reliable Asynchronous Event Transport, RAET, https://github.com/RaetProtocol/raet
 
@@ -1532,6 +1532,12 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 <a id="RFC6901">20</a><a id="ref20"></a>. RFC6901 [JavaScript Object Notation (JSON) Pointer](https://www.rfc-editor.org/rfc/rfc6901). P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed.; 2013-04. Status: Proposed Standard.
 
 <a id="RFC8949">21</a><a id="ref21"></a>. RFC8949 [Concise Binary Object Representation (CBOR)](https://www.rfc-editor.org/rfc/rfc8949). C. Bormann; P. Hoffman; 2020-12. Status: Internet Standard.
+
+<a id="RFC2119">22</a><a id="ref22"></a>. IETF RFC-2119 [Key words for use in RFCs to Indicate Requirement Levels](https://www.rfc-editor.org/rfc/rfc2119.txt). S. Bradner. 1997-03. Status: Best Current Practice
+
+<a id="RFC8259">23</a><a id="ref23"></a>. IETF RFC-8259 [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
+
+<a id="BLAKE3">23</a><a id="ref24"></a>. Black3 Specification [Blake3](https://github.com/BLAKE3-team/BLAKE3-specs). J. O’Connor; J-P. Aumasson; S. Neves ; Z. Wilcox-O’Hearn.  Version 20211102173700. 
 
 ### Informative section
 
