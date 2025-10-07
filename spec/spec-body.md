@@ -197,7 +197,7 @@ To elaborate, when converting Streams made up of concatenated Primitives back an
 
 #### Stable Framing Codes in the text domain
 
-There are many coding schemes that could satisfy the Composability constraint of alignment on 24-bit boundaries. The main reason for using a ‘T’ domain-centric encoding is higher usability, readability, or human friendliness. A primary design goal of CESR is to select an encoding approach that provides high usability, readability, or human friendliness in the ‘T’ domain. This type of usability goal simply is not realizable in the ‘B’ domain. The ‘B’ domain's purpose is merely to provide convenient compactness at scale. Usability in the ‘T’ domain is maximized when the type portion of the prepended Framing Code and its postpended value are Stable, i.e., ‘invariant’. The type portion of all compliant prepended Framing Codes MUST be stable in the Text domain. Stable type encoding is defined in the following section.
+There are many coding schemes that could satisfy the Composability constraint of alignment on 24-bit boundaries. A primary design goal of CESR is to select an encoding approach that provides high usability, readability, or human friendliness in the ‘T’ domain. This type of usability goal simply is not realizable in the ‘B’ domain. The ‘B’ domain's purpose is merely to provide convenient compactness at scale. Usability in the ‘T’ domain is maximized when the type portion of the prepended Framing Code and its postpended value are Stable, i.e., ‘invariant’. The type portion of all compliant prepended Framing Codes MUST be stable in the Text domain. Stable type encoding is defined in the following section.
 
 ##### Stable type encoding
 
