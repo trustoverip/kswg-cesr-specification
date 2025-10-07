@@ -1,3 +1,1 @@
-[[tref: kmg-1, group-count-codes, Group/Count Codes]]
-
-~ - - -
+[[tref: kmg-1, group-count-codes, Group/Count codes]]

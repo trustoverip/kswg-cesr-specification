@@ -62,7 +62,7 @@ Let `T(cat(b[k]))` denote the concrete transformation of a given concatenated se
 
 Let `B(cat(t[k]))` denote the concrete transformation of a given concatenated set of Primitives, `cat(t[k])` from the T domain to the B domain.
 
-The concatenation Composability property or Composability for short, between T and B is expressed as follows:
+The [[ref: Concatenation Composability]] property or Composability for short, between T and B is expressed as follows:
 
 Given a set of Primitives `b[k]` and `t[k]` and transformations `T(B)` and `B(T)` such that `t[k] = T(b[k])` and `b[k] = B(t[k])` for all `k`, then `T(B)` and `B(T)` are jointly concatenation composable if and only if,
 
@@ -70,7 +70,7 @@ Given a set of Primitives `b[k]` and `t[k]` and transformations `T(B)` and `B(T)
 T(cat(b[k]))=cat(T(b[k])) and B(cat(t[k]))=cat(B(t[k])) for all k.
 ```
 
-Basically, Composability (over concatenation) means that the transformation of a set (as a whole) of concatenated Primitives is equal to the concatenation of the set of individually transformed Primitives. Each and every Primitive or Count Code group of primitives MUST satisfy the Concatenation Composability property.
+Basically, Composability (over concatenation) means that the transformation of a set (as a whole) of concatenated Primitives is equal to the concatenation of the set of individually transformed Primitives. Each and every Primitive or Count Code group of primitives MUST satisfy the [[ref: Concatenation Composability]] property.
 
 For example, suppose there are two Primitives in the Text domain, namely, `t[0]` and `t[1]` that each transforms, respectively, to primitives in the Binary domain, namely, `b[0]` and `b[1]`. The transformation duals, `B(T)` and `T(B)`, are composable if and only if,
 
@@ -229,7 +229,7 @@ Similarly, a 64-byte raw binary value needs 2 lead bytes to make the combination
 
 In summary, there are two possibilities for CESR's coding scheme to ensure a composable 24-bit alignment. The first is to add trailing pad characters post-conversion. The second is to add leading pad bytes to the value portion pre-conversion, effectively placing the padding after the framing code but before the value i.e. mid-padding. Because of the greater readability of the value portion of both the fully qualified Text, ‘T’, or fully qualified Binary, ‘B’, domain representations, the second approach was chosen for CESR.
 
-Therefore all CESR primitives MUST employ mid-padding as defined above.
+Therefore all CESR primitives MUST employ [[ref: mid-padding]] as defined.
 
 #### Multiple code table approach
 
@@ -982,8 +982,8 @@ A compliant KERI/ACDC genus MUST have the following codes in its Primitive and C
 |    `0M`    | Tag6 6 B64 encoded chars for for special values  |      2      |      6        |       8     |
 |    `0N`    | Tag9 9 B64 encoded chars + 1 prepad for special values |      2      |       10       |       12     |
 |    `0O`    | Tag10 10 B64 encoded chars for special values |      2      |      10        |       12     |
-|    `0P`    | Gram Head Neck |      2      |      22        |       32     |
-|    `0Q`    | Gram Head |      2      |      22        |       28     |
+|    `0P`    | [[ref: Gram Head Neck]] |      2      |      22        |       32     |
+|    `0Q`    | [[ref: Gram Head]] |      2      |      22        |       28     |
 |    `0R`    | Gram Head AID Neck |      2      |      22        |       76     |
 |    `0S`    | Gram Head AID |      2      |      22        |       72     |
 |            |  Basic Four Character Codes   |             |              |              |
@@ -1521,7 +1521,7 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 <a id="RFC20">2</a><a id="ref2"></a>. ASCII, RFC20 https://www.rfc-editor.org/rfc/rfc20
 
-<a id="MGPK">3</a><a id="ref3"></a>. [MGPK specification](https://github.com/msgpack/msgpack/blob/master/spec.md)
+<a id="MGPK">3</a><a id="ref3"></a>. MGPK specification [MGPK](https://github.com/msgpack/msgpack/blob/master/spec.md)
 
 <a id="RAET">16</a><a id="ref16"></a>. Reliable Asynchronous Event Transport, RAET, https://github.com/RaetProtocol/raet
 
@@ -1532,6 +1532,12 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 <a id="RFC6901">20</a><a id="ref20"></a>. RFC6901 [JavaScript Object Notation (JSON) Pointer](https://www.rfc-editor.org/rfc/rfc6901). P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed.; 2013-04. Status: Proposed Standard.
 
 <a id="RFC8949">21</a><a id="ref21"></a>. RFC8949 [Concise Binary Object Representation (CBOR)](https://www.rfc-editor.org/rfc/rfc8949). C. Bormann; P. Hoffman; 2020-12. Status: Internet Standard.
+
+<a id="RFC2119">22</a><a id="ref22"></a>. IETF RFC-2119 [Key words for use in RFCs to Indicate Requirement Levels](https://www.rfc-editor.org/rfc/rfc2119.txt). S. Bradner. 1997-03. Status: Best Current Practice
+
+<a id="RFC8259">23</a><a id="ref23"></a>. IETF RFC-8259 [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
+
+<a id="BLAKE3">24</a><a id="ref24"></a>. Black3 Specification [Blake3](https://github.com/BLAKE3-team/BLAKE3-specs). J. O’Connor; J-P. Aumasson; S. Neves ; Z. Wilcox-O’Hearn.  Version 20211102173700. 
 
 ### Informative section
 
