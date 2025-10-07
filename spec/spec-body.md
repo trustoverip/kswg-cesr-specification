@@ -123,6 +123,8 @@ And finally, for `c` below:
 
 #### Conversions
 
+Given that the constraint of alignment on 24-bit boundaries in either the Text domain or the Binary domain needs to be satisfied to reach Composibility, this paragraph explains how it's done.
+
 When doing a naive Base64 conversion of a naive binary Primitive, one Base64 character represents only six bits from a given byte. In the following diagrams, each character of a Base64 conversion is denoted using zero-based indices, with the most significant character first.
 
 Therefore, encoding `a` in Base64 requires at least two Base64 characters because the zeroth character only captures the six bits from the first byte, and another character is needed to capture the other two bits. The convention in Base64 uses a Base64 character where the non-coding bits are zeros. This is diagrammed as follows:
