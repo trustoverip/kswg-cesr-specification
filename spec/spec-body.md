@@ -984,8 +984,8 @@ A compliant KERI/ACDC genus MUST have the following codes in its Primitive and C
 |    `0M`    | Tag6 6 B64 encoded chars for for special values  |      2      |      6        |       8     |
 |    `0N`    | Tag9 9 B64 encoded chars + 1 prepad for special values |      2      |       10       |       12     |
 |    `0O`    | Tag10 10 B64 encoded chars for special values |      2      |      10        |       12     |
-|    `0P`    | [[ref: Gram Head Neck]] |      2      |      22        |       32     |
-|    `0Q`    | [[ref: Gram Head]] |      2      |      22        |       28     |
+|    `0P`    | Gram Head Neck |      2      |      22        |       32     |
+|    `0Q`    | Gram Head |      2      |      22        |       28     |
 |    `0R`    | Gram Head AID Neck |      2      |      22        |       76     |
 |    `0S`    | Gram Head AID |      2      |      22        |       72     |
 |            |  Basic Four Character Codes   |             |              |              |
