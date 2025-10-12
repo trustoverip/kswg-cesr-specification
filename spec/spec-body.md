@@ -1524,11 +1524,11 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 <a id="RFC6901">20</a><a id="ref20"></a>. RFC6901 [JavaScript Object Notation (JSON) Pointer](https://www.rfc-editor.org/rfc/rfc6901). P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed.; 2013-04. Status: Proposed Standard.
 
-<a id="RFC8949">21</a><a id="ref21"></a><a id="CBOR"></a>. RFC8949 [Concise Binary Object Representation (CBOR)](https://www.rfc-editor.org/rfc/rfc8949). C. Bormann; P. Hoffman; 2020-12. Status: Internet Standard.
+<a id="CBOR">21</a><a id="ref21"></a>. <a id="RFC8949">RFC8949</a> [Concise Binary Object Representation (CBOR)](https://www.rfc-editor.org/rfc/rfc8949). C. Bormann; P. Hoffman; 2020-12. Status: Internet Standard.
 
 <a id="RFC2119">22</a><a id="ref22"></a>. IETF RFC-2119 [Key words for use in RFCs to Indicate Requirement Levels](https://www.rfc-editor.org/rfc/rfc2119.txt). S. Bradner. 1997-03. Status: Best Current Practice
 
-<a id="RFC8259">23</a><a id="ref23"></a><a id="JSON"></a>. IETF RFC-8259 [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
+<a id="JSON">23</a><a id="ref23"></a>. IETF <a id="RFC8259">RFC-8259</a> [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
 
 <a id="BLAKE3">24</a><a id="ref24"></a>. Blake3 Specification [Blake3](https://github.com/BLAKE3-team/BLAKE3-specs). J. O’Connor; J-P. Aumasson; S. Neves ; Z. Wilcox-O’Hearn.  Version 20211102173700.
 
