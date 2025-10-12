@@ -1518,13 +1518,13 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 <a id="RAET">16</a><a id="ref16"></a>. Reliable Asynchronous Event Transport, RAET, https://github.com/RaetProtocol/raet
 
-<a id="RFC4627">18</a><a id="ref18"></a>. RFC4627 [The application/json Media Type for JavaScript Object Notation (JSON)](https://www.rfc-editor.org/rfc/rfc4627). D. Crockford; 2006-07. Status: Informational.
+<a id="RFC4627">18</a><a id="ref18"></a><a id="JSON"></a>. RFC4627 [The application/json Media Type for JavaScript Object Notation (JSON)](https://www.rfc-editor.org/rfc/rfc4627). D. Crockford; 2006-07. Status: Informational.
 
 <a id="RFC4648">19</a><a id="ref19"></a>. RFC4648 [The Base16, Base32, and Base64 Data Encodings](https://www.rfc-editor.org/rfc/rfc4648). S. Josefsson; 2006-10. Status: Proposed Standard.
 
 <a id="RFC6901">20</a><a id="ref20"></a>. RFC6901 [JavaScript Object Notation (JSON) Pointer](https://www.rfc-editor.org/rfc/rfc6901). P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed.; 2013-04. Status: Proposed Standard.
 
-<a id="RFC8949">21</a><a id="ref21"></a>. RFC8949 [Concise Binary Object Representation (CBOR)](https://www.rfc-editor.org/rfc/rfc8949). C. Bormann; P. Hoffman; 2020-12. Status: Internet Standard.
+<a id="RFC8949">21</a><a id="ref21"></a><a id="CBOR"></a>. RFC8949 [Concise Binary Object Representation (CBOR)](https://www.rfc-editor.org/rfc/rfc8949). C. Bormann; P. Hoffman; 2020-12. Status: Internet Standard.
 
 <a id="RFC2119">22</a><a id="ref22"></a>. IETF RFC-2119 [Key words for use in RFCs to Indicate Requirement Levels](https://www.rfc-editor.org/rfc/rfc2119.txt). S. Bradner. 1997-03. Status: Best Current Practice
 
