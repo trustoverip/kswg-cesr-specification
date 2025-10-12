@@ -1518,7 +1518,7 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 <a id="RAET">16</a><a id="ref16"></a>. Reliable Asynchronous Event Transport, RAET, https://github.com/RaetProtocol/raet
 
-<a id="RFC4627">18</a><a id="ref18"></a><a id="JSON"></a>. RFC4627 [The application/json Media Type for JavaScript Object Notation (JSON)](https://www.rfc-editor.org/rfc/rfc4627). D. Crockford; 2006-07. Status: Informational.
+<a id="RFC4627">18</a><a id="ref18"></a>. RFC4627 [The application/json Media Type for JavaScript Object Notation (JSON)](https://www.rfc-editor.org/rfc/rfc4627). D. Crockford; 2006-07. Status: Informational.
 
 <a id="RFC4648">19</a><a id="ref19"></a>. RFC4648 [The Base16, Base32, and Base64 Data Encodings](https://www.rfc-editor.org/rfc/rfc4648). S. Josefsson; 2006-10. Status: Proposed Standard.
 
@@ -1528,7 +1528,7 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 <a id="RFC2119">22</a><a id="ref22"></a>. IETF RFC-2119 [Key words for use in RFCs to Indicate Requirement Levels](https://www.rfc-editor.org/rfc/rfc2119.txt). S. Bradner. 1997-03. Status: Best Current Practice
 
-<a id="RFC8259">23</a><a id="ref23"></a>. IETF RFC-8259 [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
+<a id="RFC8259">23</a><a id="ref23"></a><a id="JSON"></a>. IETF RFC-8259 [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
 
 <a id="BLAKE3">24</a><a id="ref24"></a>. Blake3 Specification [Blake3](https://github.com/BLAKE3-team/BLAKE3-specs). J. O’Connor; J-P. Aumasson; S. Neves ; Z. Wilcox-O’Hearn.  Version 20211102173700.
 

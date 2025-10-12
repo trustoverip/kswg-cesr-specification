@@ -74,28 +74,21 @@ IN NO EVENT WILL ANY ToIP PARTY BE LIABLE TO ANY OTHER PARTY FOR LOST PROFITS OR
 
 Implementation design of a protocol-based data serialization specification that supports loss-less round-tripping between text and binary representations of compositions of primitives and groups of primitives. The encoding scheme includes first-class cryptographically agile encodings for the full range of cryptographic primitives such as random numbers, digests, secrets, private keys, public keys, signatures, encrypted data, etc. This enables cryptographic heavy protocols to succinctly represent integrated cryptographic primitives in the text domain for improved usability and readability while supporting loss-less round trip convertibility to binary for more compact transmission and storage. This better supports the increasing demand for cryptographic heavy protocols for enhanced security. Also supported are interleaved JSON, CBOR, and MGPK encodings of field maps that contain cryptographic primitives as field values. The application scope includes any electronically transmitted information.  The implementation dependency scope includes Base64 encoding/decoding libraries, standardized cryptographic primitive definitions, JSON, CBOR, and MGPK libraries.
 
-
 ## Normative references
 
-[a]. IETF RFC-2119 Key words for use in RFCs to Indicate Requirement Levels
-[a]: https://www.rfc-editor.org/rfc/rfc2119.txt
+[a](#RFC2119). IETF RFC-2119 Key words for use in RFCs to Indicate Requirement Levels
 
-[b]. IETF RFC-4648 Base64 
-[b]: https://www.rfc-editor.org/rfc/rfc4648.txt
+[b](#RFC4648). IETF RFC-4648 Base64
 
-[c]. IETF RFC-8259 JSON 
-[c]: https://www.rfc-editor.org/rfc/rfc8259.txt
+[c](#RFC8259). IETF RFC-8259 JSON 
 
-[d]. IETF RFC-8949 CBOR 
-[d]: https://www.rfc-editor.org/rfc/rfc8949.txt
+[d](#RFC8949). IETF RFC-8949 CBOR 
 
-[e]. MessagePack Specification MGPK
-[e]: https://github.com/msgpack/msgpack/blob/master/spec.md
+[e](#MGPK). MessagePack Specification MGPK
 
-[f]. Black3 Specification Blake3
-[f]: https://github.com/BLAKE3-team/BLAKE3-specs
+[f](#BLAKE3). Black3 Specification Blake3
 
-
+The [bibliography section](#bibliography) hosts the full list of (normative) references.
 
 ## Terms and Definitions
 
