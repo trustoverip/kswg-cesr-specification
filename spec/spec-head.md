@@ -25,23 +25,9 @@ Composable Event Streaming Representation (CESR)
 ~ [GitHub repo](https://github.com/trustoverip/tswg-cesr-specification)
 ~ [Commit history](https://github.com/trustoverip/tswg-cesr-specification/commits/main)
 
-[//]: # (\maketitle)
-
-[//]: # (\newpage)
-
-[//]: # (\toc)
-
-[//]: # (\newpage)
-
-[//]: # (\newpage)
-
-[//]: # (::: introtitle)
-
 ## Introduction
 
-[//]: # (:::)
-
-The Composable Event Streaming Representation (CESR) is a dual text-binary encoding format that has the unique property of text-binary concatenation composability. This Composability property enables the round-trip conversion en-masse of concatenated Primitives between the text domain and binary domain while maintaining the separability of individual Primitives. This enables convenient usability in the text domain and compact transmission in the binary domain. CESR Primitives are self-framing. CESR supports self-framing Group Codes that enable stream processing and pipelining in both the text and binary domains. CESR supports composable text-binary encodings for general data types as well as suites of cryptographic material. Popular cryptographic material suites have compact encodings for efficiency, while less compact encodings provide sufficient extensibility to support all foreseeable types. CESR streams also support interleaved JSON, CBOR, and MGPK serializations. CESR is a universal encoding that uniquely provides dual text and binary domain representations via composable conversion. The CESR protocol is used by other protocols such as [[1](#KERI)].
+The Composable Event Streaming Representation (CESR) is a dual text-binary encoding format that has the unique property of text-binary concatenation composability. This Composability property enables the round-trip conversion en-masse of concatenated Primitives between the text domain and binary domain while maintaining the separability of individual Primitives. This enables convenient usability in the text domain and compact transmission in the binary domain. CESR Primitives are self-framing. CESR supports self-framing Group Codes that enable stream processing and pipelining in both the text and binary domains. CESR supports composable text-binary encodings for general data types as well as suites of cryptographic material. Popular cryptographic material suites have compact encodings for efficiency, while less compact encodings provide sufficient extensibility to support all foreseeable types. CESR streams also support interleaved [JSON](#JSON), [CBOR](#CBOR), and [MGPK](#MGPK) serializations. CESR is a universal encoding that uniquely provides dual text and binary domain representations via composable conversion. The CESR protocol is used by other protocols such as [[1](#KERI)].
 
 One way to better secure Internet communications is to use cryptographically verifiable Primitives and data structures inside Messages and in support of messaging protocols. Cryptographically verifiable Primitives provide essential building blocks for zero-trust computing and networking architectures. Traditionally, Cryptographic Primitives, including but not limited to digests, salts, seeds (private keys), public keys, and digital signatures, have been largely represented in some binary encoding. This limits their usability in domains or protocols that are human-centric or equivalently that only support ASCII text-printable characters [[RFC20](#RFC20)]. These domains include source code, documents, system logs, audit logs, legally defensible archives, Ricardian contracts, and human-readable text documents of many types [[RFC4627](#RFC4627)].
 
@@ -83,36 +69,26 @@ These materials are made available under and are subject to the [OWF CLA 1.0 - C
 THESE MATERIALS ARE PROVIDED “AS IS.” The Trust Over IP Foundation, established as the Joint Development Foundation Projects, LLC, Trust Over IP Foundation Series ("ToIP"), and its members and contributors (each of ToIP, its members and contributors, a "ToIP Party") expressly disclaim any warranties (express, implied, or otherwise), including implied warranties of merchantability, non-infringement, fitness for a particular purpose, or title, related to the materials. The entire risk as to implementing or otherwise using the materials is assumed by the implementer and user. 
 IN NO EVENT WILL ANY ToIP PARTY BE LIABLE TO ANY OTHER PARTY FOR LOST PROFITS OR ANY FORM OF INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THESE MATERIALS, ANY DELIVERABLE OR THE ToIP GOVERNING AGREEMENT, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND WHETHER OR NOT THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-[//]: # (\mainmatter)
-
-[//]: # (\doctitle)
 
 ## Scope
 
 Implementation design of a protocol-based data serialization specification that supports loss-less round-tripping between text and binary representations of compositions of primitives and groups of primitives. The encoding scheme includes first-class cryptographically agile encodings for the full range of cryptographic primitives such as random numbers, digests, secrets, private keys, public keys, signatures, encrypted data, etc. This enables cryptographic heavy protocols to succinctly represent integrated cryptographic primitives in the text domain for improved usability and readability while supporting loss-less round trip convertibility to binary for more compact transmission and storage. This better supports the increasing demand for cryptographic heavy protocols for enhanced security. Also supported are interleaved JSON, CBOR, and MGPK encodings of field maps that contain cryptographic primitives as field values. The application scope includes any electronically transmitted information.  The implementation dependency scope includes Base64 encoding/decoding libraries, standardized cryptographic primitive definitions, JSON, CBOR, and MGPK libraries.
 
-
 ## Normative references
 
-[a]. IETF RFC-2119 Key words for use in RFCs to Indicate Requirement Levels
-[a]: https://www.rfc-editor.org/rfc/rfc2119.txt
+[a](#RFC2119). IETF RFC-2119 Key words for use in RFCs to Indicate Requirement Levels
 
-[b]. IETF RFC-4648 Base64 
-[b]: https://www.rfc-editor.org/rfc/rfc4648.txt
+[b](#RFC4648). IETF RFC-4648 Base64
 
-[c]. IETF RFC-8259 JSON 
-[c]: https://www.rfc-editor.org/rfc/rfc8259.txt
+[c](#RFC8259). IETF RFC-8259 JSON 
 
-[d]. IETF RFC-8949 CBOR 
-[d]: https://www.rfc-editor.org/rfc/rfc8949.txt
+[d](#RFC8949). IETF RFC-8949 CBOR 
 
-[e]. MessagePack Specification MGPK
-[e]: https://github.com/msgpack/msgpack/blob/master/spec.md
+[e](#MGPK). MessagePack Specification MGPK
 
-[f]. Black3 Specification Blake3
-[f]: https://github.com/BLAKE3-team/BLAKE3-specs
+[f](#BLAKE3). Black3 Specification Blake3
 
-
+The [bibliography section](#bibliography) hosts the full list of (normative) references.
 
 ## Terms and Definitions
 
