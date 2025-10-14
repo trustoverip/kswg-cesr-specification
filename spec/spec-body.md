@@ -940,6 +940,10 @@ A compliant KERI/ACDC genus MUST have the following codes in its Primitive and C
 | `--Z#####` | ESSR (TSP) Payload `version+messagtype+...` up to 1,073,741,823 quadlets/triplets |      8      |       5      |       8      |
 |   `-a##`   | Blinded State quadruples dig+uuid+said+state up to 4,095 quadlets/triplets |      4      |       2      |       4      |
 | `--a#####` | Big Blinded State quadruples dig+uuid+said+state up to 1,073,741,823 quadlets/triplets |      8      |       5      |       8      |
+|   `-b##`   | Bound Blinded State Sextuples blid+uuid+said+state+bsnu+bsaid up to 4,095 quadlets/triplets |      4      |       2      |       4      |
+| `--b#####` | Big Bound Blinded State Sextuples blid+uuid+said+state+bsnu+bsaid up to 1,073,741,823 quadlets/triplets |      8      |       5      |       8      |
+|   `-c##`   | Typed and Blinded IANA media type quadruples blid+uuid+type+media up to 4,095 quadlets/triplets |      4      |       2      |       4      |
+| `--c#####` | Big Typed and Blinded IANA media type quadruples blid+uuid+type+media up to 1,073,741,823 quadlets/triplets |      8      |       5      |       8      |
 |            |  Operation Codes   |             |              |              |
 |   `_`      |      Reserved TBD  |             |              |              |
 |            |  Primitive Matter Codes  |             |              |              |
@@ -969,7 +973,8 @@ A compliant KERI/ACDC genus MUST have the following codes in its Primitive and C
 |     `W`    | Label2 2 bytes for label lead size 0 |      1      |              |      4    |
 |     `X`    | Tag3 3 B64 encoded chars for special values |      1      |       3       |      4    |
 |     `Y`    | Tag7 7 B64 encoded chars for special values  |      1      |        7      |      8   |
-|     `Z`    | Blinding factor 256 bits, Cryptographic strength deterministically generated from random salt |      1      |              |      44 |
+|     `Z`    | Tag11  11 B64 encoded chars for special values |      1      |              |      12 |
+|     `a`    | Blinding factor 256 bits, Cryptographic strength deterministically generated from random salt |      1      |              |      44 |
 | Basic Two Character Codes    |             |              |              |    |
 |    `0A`    | Random salt, seed, nonce, private key, or sequence number of length 128 bits |      2      |              |      24      |
 |    `0B`    | Ed25519 signature                 |      2      |              |      88      |
@@ -1044,12 +1049,6 @@ A compliant KERI/ACDC genus MUST have the following codes in its Primitive and C
 |   `7AAF`   | HPKE Base cipher bytes of QB2 plaintext big lead size 0 |      8      |      4        |            |
 |   `8AAF`   | HPKE Base cipher bytes of QB2 plaintext big lead size 1 |      8      |      4        |            |
 |   `9AAF`   | HPKE Base cipher bytes of QB2 plaintext big lead size 2 |      8      |      4        |            |
-|   `4G`     | HPKE Auth cipher bytes of QB2 plaintext lead size 0 |      4      |      2        |            |
-|   `5G`     | HPKE Auth cipher bytes of QB2 plaintext lead size 1 |      4      |      2        |            |
-|   `6G`     | HPKE Auth cipher bytes of QB2 plaintext lead size 2 |      4      |      2        |            |
-|   `7AAG`   | HPKE Auth cipher bytes of QB2 plaintext big lead size 0 |      8      |      4        |            |
-|   `8AAG`   | HPKE Auth cipher bytes of QB2 plaintext big lead size 1 |      8      |      4        |            |
-|   `9AAG`   | HPKE Auth cipher bytes of QB2 plaintext big lead size 2 |      8      |      4        |            |
 |   `4H`     | Decimal number string lead size 0 |      4      |      2        |            |
 |   `5H`     | Decimal number string lead size 1 |      4      |      2        |            |
 |   `6H`     | Decimal number string lead size 2 |      4      |      2        |            |
