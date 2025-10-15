@@ -2,7 +2,7 @@
 
 This is the working area for the Trust over IP, "Composable Event Streaming Representation (CESR)" specification.
 
-* [Editor's Copy](https://trustoverip.github.io/tswg-cesr-specification/)
+* [Editor's Copy](https://trustoverip.github.io/kswg-cesr-specification/)
 
 #### Contributing
 
