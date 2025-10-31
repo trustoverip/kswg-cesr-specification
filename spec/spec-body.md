@@ -447,7 +447,7 @@ Typically, modern cryptographic suites support limited sets of raw binary Primit
 
 For example, the raw binary Primitives from the well-known [[6](#BOM)] ECC (Elliptic Curve Cryptography) library all satisfy this 128-bit strength goal. In particular, the digital signing public key raw binary Primitives for EdDSA are 256 bits (32 bytes) in length because well-known algorithms can reduce the number of trials to brute force invert an ECC public key to get the private key by the square root of the number of scalar multiplications which is also related to the size of both the private key and public key coordinates (discrete logarithm problem [[5](#Dlog)]). Therefore, 256-bit (32-byte) ECC keys are needed to achieve 128 bits of cryptographic strength. In general, the size of a given raw binary Primitive is typically some multiple of 128 bits of cryptographic strength. This is also true for the associated EdDSA raw binary signatures which are 512 bits (64 bytes) in length.
 
-Similar scale factors exist for cryptographic digests. A standard default Blake3 digest is 256 bits (32 bytes) in length in order to get 128 bits of cryptographic strength. This is also true of SHA3-256. The sweet spots for modern cryptographic raw Primitive lengths are 32 bytes for many digests as well as EdDSA public and private keys as well as ECDSA private keys. Likewise, 64 bytes is the sweet spot for EdDSA and ECDSA-secp256k1 signatures and 64-byte variants of the most popular digests. Therefore, optimized text code tables for these two sweet spots (32 and 64 bytes) would be highly advantageous.
+Similar scale factors exist for cryptographic digests. A standard default [Blake3](#BLAKE3) digest is 256 bits (32 bytes) in length in order to get 128 bits of cryptographic strength. This is also true of SHA3-256. The sweet spots for modern cryptographic raw Primitive lengths are 32 bytes for many digests as well as EdDSA public and private keys as well as ECDSA private keys. Likewise, 64 bytes is the sweet spot for EdDSA and ECDSA-secp256k1 signatures and 64-byte variants of the most popular digests. Therefore, optimized text code tables for these two sweet spots (32 and 64 bytes) would be highly advantageous.
 
 A 32-byte raw binary value has a pad size of 1 character.
 
@@ -1231,7 +1231,7 @@ Replacing the 44 dummy characters with the SAID of the same length produces the 
 field_0_01234567ENI2bDYghiu1KYYkFrPofH8tJ5tNiNt8WrTIc4s_5IIHfield_2_98765432
 ```
 
-To verify the embedded SAID with respect to its encompassing serialization above, just reverse the generation steps. In other words, replace the SAID in the string with dummy characters of the same length, compute the Blake3 digest as SAID of this dummied version, and then compare the SAIDs.
+To verify the embedded SAID with respect to its encompassing serialization above, just reverse the generation steps. In other words, replace the SAID in the string with dummy characters of the same length, compute the [Blake3](#BLAKE3) digest as SAID of this dummied version, and then compare the SAIDs.
 
 ##### Serialization Generation
 
