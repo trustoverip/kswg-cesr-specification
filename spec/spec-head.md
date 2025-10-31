@@ -1,7 +1,7 @@
 Composable Event Streaming Representation (CESR)
 ================================================
 
-**Specification Status**: v0.9 Draft
+**Specification Status**: v1.0
 
 **Latest Draft:**
 
@@ -76,19 +76,11 @@ Implementation design of a protocol-based data serialization specification that 
 
 ## Normative references
 
-[a](#RFC2119). IETF RFC-2119 Key words for use in RFCs to Indicate Requirement Levels
+[The normative documents](#normative-section) are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.
 
-[b](#RFC4648). IETF RFC-4648 Base64
+* [ISO/IEC 7498-1](#IT7498):1994 Information technology — Open Systems Interconnection — Basic Reference Model: The Basic Model, including Requirement Levels (IETF [RFC-2119](#RFC2119)).
 
-[c](#RFC8259). IETF RFC-8259 JSON 
-
-[d](#RFC8949). IETF RFC-8949 CBOR 
-
-[e](#MGPK). MessagePack Specification MGPK
-
-[f](#BLAKE3). Black3 Specification Blake3
-
-The [bibliography section](#bibliography) hosts the full list of (normative) references.
+See [Bibliography - Normative Section](#normative-section)
 
 ## Terms and Definitions
 
