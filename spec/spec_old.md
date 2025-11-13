@@ -1715,7 +1715,7 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 [[spec]]
 
 [1]. KERI
-[1]: https://trustoverip.github.io/tswg-keri-specification/
+[1]: https://trustoverip.github.io/kswg-keri-specification/
 
 [2]. ASCII, RFC20
 [2]: https://www.rfc-editor.org/rfc/rfc20

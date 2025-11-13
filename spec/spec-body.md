@@ -1509,7 +1509,7 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 
 ### Normative section
 
-<a id="KERI">1</a><a id="ref1"></a>. [KERI specification](https://trustoverip.github.io/tswg-keri-specification/)
+<a id="KERI">1</a><a id="ref1"></a>. [KERI specification](https://trustoverip.github.io/kswg-keri-specification/)
 
 <a id="RFC20">2</a><a id="ref2"></a>. ASCII, RFC20 https://www.rfc-editor.org/rfc/rfc20
 
