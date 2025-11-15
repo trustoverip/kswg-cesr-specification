@@ -5,7 +5,7 @@ Composable Event Streaming Representation (CESR)
 
 **Latest Draft:**
 
-[https://github.com/trustoverip/tswg-cesr-specification](https://github.com/trustoverip/tswg-cesr-specification)
+[https://github.com/trustoverip/kswg-cesr-specification](https://github.com/trustoverip/kswg-cesr-specification)
 
 **Author:**
 
@@ -22,8 +22,8 @@ Composable Event Streaming Representation (CESR)
 
 **Participate:**
 
-~ [GitHub repo](https://github.com/trustoverip/tswg-cesr-specification)
-~ [Commit history](https://github.com/trustoverip/tswg-cesr-specification/commits/main)
+~ [GitHub repo](https://github.com/trustoverip/kswg-cesr-specification)
+~ [Commit history](https://github.com/trustoverip/kswg-cesr-specification/commits/main)
 
 ## Introduction
 
@@ -47,7 +47,7 @@ The support for efficient stream processing is reflected in how a cryptographic 
 
 Information about the current status of this document, any errata,
 and how to provide feedback on it, may be obtained at
-[https://github.com/trustoverip/tswg-cesr-specification](https://github.com/trustoverip/tswg-cesr-specification).
+[https://github.com/trustoverip/kswg-cesr-specification](https://github.com/trustoverip/kswg-cesr-specification).
 
 ## Copyright Notice
 
