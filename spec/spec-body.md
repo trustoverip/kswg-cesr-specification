@@ -689,6 +689,8 @@ For 64-byte signatures, the Ed25519 and ECDSA secp256k1 schemes have entries in 
 
 A new signature scheme based on Ed448 with 114-byte signatures is also supported. These signatures have a pad size of zero, so they require a four-character text code. The first character is the selector `0`, the second character is the type with 64 values, and the last two characters each provide a one-character index as a Base64 encoded integer with 64 different values. A big Version code consumes eight characters with one character for the selector, one for the type, and three for each of the dual indices.
 
+Post-quantum signatures are much larger, and their raw sizes fall in all three residues modulo 3. The schemes above have no lead bytes, so they can encode only a signature whose raw size is congruent to 0 or 1 modulo 3; ML-DSA-44 and SLH-DSA at the 128s and 256s levels are congruent to 2. The `8` and `9` schemes close that gap. Each is an eight-character code with one selector character, one type character, and a three-character Index and Ondex, like the `3` scheme, but with one and two lead bytes respectively, in the same way that the `2` and `3` selectors of the basic four-character fixed tables add lead bytes to the `1` scheme. The selector for a post-quantum indexed signature is therefore not a matter of choice: `3` for a raw size that is a multiple of 3, `8` for a raw size congruent to 2 modulo 3, and `9` for a raw size congruent to 1 modulo 3. Post-quantum indexed signature codes MUST use these three eight-character schemes and MUST NOT use the two-, four-, or six-character schemes. The reasoning matches the policy for the basic tables: eight characters instead of four add a negligible fraction to a signature of at least 2,420 bytes, and three-character indices accommodate key lists of up to 262,144 keys. As for Ed448, each post-quantum scheme has a dual-indexed code and a current-only code.
+
 ##### Indexed code table
 
 The associated indexed schemes are provided in the following table:
@@ -700,6 +702,8 @@ The associated indexed schemes are provided in the following table:
 |     `0`   |   1        |     1       |      1      |      4    |      0     |      0   |     `0$##&&&&`|
 |     `2`   |   1        |     2       |      2      |      6    |      0     |      2   |   `2$####&&&&`|
 |     `3`   |   1        |     3       |      3      |      6    |      0     |      0   | `3$######&&&&`|
+|     `8`   |   1        |     3       |      3      |      8    |      1     |      1   | `8$######%&&&`|
+|     `9`   |   1        |     3       |      3      |      8    |      2     |      2   | `9$######%%&&`|
 
 ##### Encoding scheme format symbol table
 
@@ -1122,6 +1126,26 @@ A compliant KERI/ACDC genus MUST have the following codes in its contextual inde
 |           | Indexed Eight Character Codes      |             |              |              |              |
 |`3A######` | Ed448 indexed signature big dual      |      8      |       3      |       3      |      160     |
 |`3B######` | Ed448 indexed signature big current only |      8      |       3      |       3      |      160     |
+|`3C######` | ML-DSA-65 indexed signature big dual |      8      |       3      |       3      |      4420     |
+|`3D######` | ML-DSA-65 indexed signature big current only |      8      |       3      |       3      |      4420     |
+|`3E######` | SLH-DSA-SHA2-192s indexed signature big dual |      8      |       3      |       3      |      21640     |
+|`3F######` | SLH-DSA-SHA2-192s indexed signature big current only |      8      |       3      |       3      |      21640     |
+|`3G######` | SLH-DSA-SHAKE-192s indexed signature big dual |      8      |       3      |       3      |      21640     |
+|`3H######` | SLH-DSA-SHAKE-192s indexed signature big current only |      8      |       3      |       3      |      21640     |
+|           | Indexed Eight Character Codes with 1 Lead Byte |             |              |              |              |
+|`8A######` | ML-DSA-44 indexed signature big dual |      8      |       3      |       3      |      3236     |
+|`8B######` | ML-DSA-44 indexed signature big current only |      8      |       3      |       3      |      3236     |
+|`8C######` | SLH-DSA-SHA2-128s indexed signature big dual |      8      |       3      |       3      |      10484     |
+|`8D######` | SLH-DSA-SHA2-128s indexed signature big current only |      8      |       3      |       3      |      10484     |
+|`8E######` | SLH-DSA-SHAKE-128s indexed signature big dual |      8      |       3      |       3      |      10484     |
+|`8F######` | SLH-DSA-SHAKE-128s indexed signature big current only |      8      |       3      |       3      |      10484     |
+|`8G######` | SLH-DSA-SHA2-256s indexed signature big dual |      8      |       3      |       3      |      39732     |
+|`8H######` | SLH-DSA-SHA2-256s indexed signature big current only |      8      |       3      |       3      |      39732     |
+|`8I######` | SLH-DSA-SHAKE-256s indexed signature big dual |      8      |       3      |       3      |      39732     |
+|`8J######` | SLH-DSA-SHAKE-256s indexed signature big current only |      8      |       3      |       3      |      39732     |
+|           | Indexed Eight Character Codes with 2 Lead Bytes |             |              |              |              |
+|`9A######` | ML-DSA-87 indexed signature big dual |      8      |       3      |       3      |      6180     |
+|`9B######` | ML-DSA-87 indexed signature big current only |      8      |       3      |       3      |      6180     |
 
 Legend:
 
@@ -1552,9 +1576,7 @@ ML-DSA has the more compact Primitives of the two, with signatures from 2,420 to
 
 No code in this specification encodes a digest of a post-quantum public key as a distinct Primitive type. A digest of a public key is encoded with the ordinary digest codes, such as `E` for Blake3-256, and the context in which the Primitive appears determines whether that digest is a SAID, an AID, a hidden pre-rotation commitment, or a digest of a public key. Introducing a code that means "digest of a public key" would mix the semantics of a Primitive's use with the semantics of its cryptographic algorithm, which this specification otherwise avoids. It would also not achieve its apparent purpose. A compact identifier derived from a large post-quantum public key is already available: an identifier whose derivation is a digest of an inception event, rather than a digest of a key, is exactly as compact, requires no new code, and carries the key itself in an event that is already defined.
 
-::: issue
-[Indexed signature codes for post-quantum signature schemes](https://github.com/trustoverip/kswg-cesr-specification/issues/171)
-:::
+Controller and witness signatures on KERI events are carried in indexed signature groups. The indexed code table therefore also defines indexed signature codes for every post-quantum signature scheme, using the eight-character indexed schemes described under Indexed codes, so that a post-quantum key can sign through the same path as any other key.
 
 ## Bibliography
 
