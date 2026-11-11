@@ -689,6 +689,8 @@ For 64-byte signatures, the Ed25519 and ECDSA secp256k1 schemes have entries in 
 
 A new signature scheme based on Ed448 with 114-byte signatures is also supported. These signatures have a pad size of zero, so they require a four-character text code. The first character is the selector `0`, the second character is the type with 64 values, and the last two characters each provide a one-character index as a Base64 encoded integer with 64 different values. A big Version code consumes eight characters with one character for the selector, one for the type, and three for each of the dual indices.
 
+Post-quantum signatures are much larger, and their raw sizes fall in all three residues modulo 3. The schemes above have no lead bytes, so they can encode only a signature whose raw size is congruent to 0 or 1 modulo 3; ML-DSA-44 and SLH-DSA at the 128s and 256s levels are congruent to 2. The `8` and `9` schemes close that gap. Each is an eight-character code with one selector character, one type character, and a three-character Index and Ondex, like the `3` scheme, but with one and two lead bytes respectively, in the same way that the `2` and `3` selectors of the basic four-character fixed tables add lead bytes to the `1` scheme. The selector for a post-quantum indexed signature is therefore not a matter of choice: `3` for a raw size that is a multiple of 3, `8` for a raw size congruent to 2 modulo 3, and `9` for a raw size congruent to 1 modulo 3. Post-quantum indexed signature codes MUST use these three eight-character schemes and MUST NOT use the two-, four-, or six-character schemes. The reasoning matches the policy for the basic tables: eight characters instead of four add a negligible fraction to a signature of at least 2,420 bytes, and three-character indices accommodate key lists of up to 262,144 keys. As for Ed448, each post-quantum scheme has a dual-indexed code and a current-only code.
+
 ##### Indexed code table
 
 The associated indexed schemes are provided in the following table:
@@ -700,6 +702,8 @@ The associated indexed schemes are provided in the following table:
 |     `0`   |   1        |     1       |      1      |      4    |      0     |      0   |     `0$##&&&&`|
 |     `2`   |   1        |     2       |      2      |      6    |      0     |      2   |   `2$####&&&&`|
 |     `3`   |   1        |     3       |      3      |      6    |      0     |      0   | `3$######&&&&`|
+|     `8`   |   1        |     3       |      3      |      8    |      1     |      1   | `8$######%&&&`|
+|     `9`   |   1        |     3       |      3      |      8    |      2     |      2   | `9$######%%&&`|
 
 ##### Encoding scheme format symbol table
 
@@ -780,7 +784,15 @@ The following table includes both labels of parts shown in the columns in the pa
 
 ### Code table entry policy
 
-The policy for placing entries into the tables, in general, is in order of first needed first-entered basis. In addition, the compact code tables prioritize entries that satisfy the requirement that the associated cryptographic operations maintain at least 128 bits of cryptographic strength. This precludes the entry of many weak cryptographic suites into the compact tables. CESR's compact code table includes only best-of-class cryptographic operations along with common non-Cryptographic Primitive types. At the time of this writing, there is the expectation that the National Institute of Standards and Technology (NIST) soon will approve standardized post-quantum resistant cryptographic operations. When that happens, codes for the most appropriate post-quantum operations will be added. For example, Falcon appears to be among the leading candidates with open-source code already available.
+The policy for placing entries into the tables, in general, is in order of first needed first-entered basis. In addition, the compact code tables prioritize entries that satisfy the requirement that the associated cryptographic operations maintain at least 128 bits of cryptographic strength. This precludes the entry of many weak cryptographic suites into the compact tables. CESR's compact code table includes only best-of-class cryptographic operations along with common non-Cryptographic Primitive types.
+
+The one- and two-character code tables are a scarce resource. The one-character table provides only 52 codes in total, and the two-character table only 64. The four-character fixed tables, by contrast, provide 262,144 codes per table. Therefore, entries in the one- and two-character tables MUST be reserved for Primitives whose raw size is small enough that a longer code would materially increase the size of the encoded Primitive. Post-quantum signatures and lattice-based public keys are large: the smallest of them in the tables below is the 1,312-byte ML-DSA-44 public key, and the largest signature exceeds 29,000 bytes. A four-character code therefore adds at most four characters to a Primitive that is already at least 1,752 characters long, a relative overhead below one quarter of one percent. Post-quantum codes MUST therefore be placed in the four-character fixed tables given by the `1`, `2`, and `3` selectors, and MUST NOT consume entries in the one- or two-character tables. The rule also covers the smaller Primitives of the same algorithm families, namely private key seeds and SLH-DSA public keys, for which the size argument is weaker. They are placed with the rest of their families because those families define many parameter sets, a seed code for each would consume a large share of the remaining compact codes, and every post-quantum Primitive can then be dispatched through the same tables.
+
+Which of the three four-character fixed tables a given Primitive occupies is not a matter of choice. It is determined by the raw size of the Primitive modulo 3, because the encoding MUST align on a 24-bit boundary. A Primitive whose raw size is a multiple of 3 requires no lead bytes and uses the `1` selector. A raw size congruent to 2 modulo 3 requires one lead byte and uses the `2` selector. A raw size congruent to 1 modulo 3 requires two lead bytes and uses the `3` selector. Consequently, the Primitives belonging to a single algorithm are commonly distributed across more than one table, in the same way that an Ed25519 public verification key uses the one-character code `D` while an Ed25519 signature uses the two-character code `0B`.
+
+NIST finalized its first three post-quantum cryptography standards in August 2024: ML-KEM (FIPS 203) [[FIPS203](#FIPS203)], ML-DSA (FIPS 204) [[FIPS204](#FIPS204)], and SLH-DSA (FIPS 205) [[FIPS205](#FIPS205)]. The tables below define codes for the two of these that are signature schemes, ML-DSA and SLH-DSA. ML-KEM is a key-encapsulation mechanism rather than a signature scheme; codes for it are not defined here and are left to a later version. A further signature standard, FN-DSA (FIPS 206), based on the Falcon algorithm, had not been published as of this writing. Codes for it are expected to be added once its parameters and encodings are final.
+
+Where an algorithm family defines many parameter sets, only a subset is admitted. Admitting every variant of an algorithm invites the use of variants that have received little implementation scrutiny, which weakens rather than strengthens the security of the ecosystem. FIPS 205 defines twelve SLH-DSA parameter sets, comprising two hash families, three security levels, and a small-signature (`s`) and fast-signing (`f`) variant at each level. Only the six `s` parameter sets have entries below. The `f` variants trade roughly a factor of two to three in signature size for signing speed, which is the wrong trade for a protocol whose signatures are transmitted and archived far more often than they are generated.
 
 ### Table format
 
@@ -1010,6 +1022,35 @@ A compliant KERI/ACDC genus MUST have the following codes in its Primitive and C
 |   `1AAL`   | No falsey Boolean value |      4      |              |      4      |
 |   `1AAM`   | Yes truthy Boolean value|      4      |              |      4      |
 |   `1AAN`   | Tag8 8 B64 encoded chars for special values |      4      |       8       |      12      |
+|   `1AAQ`   | ML-DSA-65 signature [[FIPS204](#FIPS204)] |      4      |              |      4416      |
+|   `1AAR`   | ML-DSA-87 public verification key [[FIPS204](#FIPS204)] |      4      |              |      3460      |
+|   `1AAS`   | Seed of SLH-DSA-SHA2-128s private key [[FIPS205](#FIPS205)] |      4      |              |      68      |
+|   `1AAT`   | Seed of SLH-DSA-SHAKE-128s private key [[FIPS205](#FIPS205)] |      4      |              |      68      |
+|   `1AAU`   | SLH-DSA-SHA2-192s public verification key [[FIPS205](#FIPS205)] |      4      |              |      68      |
+|   `1AAV`   | SLH-DSA-SHA2-192s signature [[FIPS205](#FIPS205)] |      4      |              |      21636      |
+|   `1AAW`   | Seed of SLH-DSA-SHA2-192s private key [[FIPS205](#FIPS205)] |      4      |              |      100      |
+|   `1AAX`   | SLH-DSA-SHAKE-192s public verification key [[FIPS205](#FIPS205)] |      4      |              |      68      |
+|   `1AAY`   | SLH-DSA-SHAKE-192s signature [[FIPS205](#FIPS205)] |      4      |              |      21636      |
+|   `1AAZ`   | Seed of SLH-DSA-SHAKE-192s private key [[FIPS205](#FIPS205)] |      4      |              |      100      |
+|   `1AAa`   | Seed of SLH-DSA-SHA2-256s private key [[FIPS205](#FIPS205)] |      4      |              |      132      |
+|   `1AAb`   | Seed of SLH-DSA-SHAKE-256s private key [[FIPS205](#FIPS205)] |      4      |              |      132      |
+|            |  Basic Four Character Codes with 1 Lead Byte  |             |              |              |
+|   `2AAA`   | ML-DSA-44 signature [[FIPS204](#FIPS204)] |      4      |              |      3232      |
+|   `2AAB`   | Seed of ML-DSA-44 private key [[FIPS204](#FIPS204)] |      4      |              |      48      |
+|   `2AAC`   | ML-DSA-65 public verification key [[FIPS204](#FIPS204)] |      4      |              |      2608      |
+|   `2AAD`   | Seed of ML-DSA-65 private key [[FIPS204](#FIPS204)] |      4      |              |      48      |
+|   `2AAE`   | Seed of ML-DSA-87 private key [[FIPS204](#FIPS204)] |      4      |              |      48      |
+|   `2AAF`   | SLH-DSA-SHA2-128s public verification key [[FIPS205](#FIPS205)] |      4      |              |      48      |
+|   `2AAG`   | SLH-DSA-SHA2-128s signature [[FIPS205](#FIPS205)] |      4      |              |      10480      |
+|   `2AAH`   | SLH-DSA-SHAKE-128s public verification key [[FIPS205](#FIPS205)] |      4      |              |      48      |
+|   `2AAI`   | SLH-DSA-SHAKE-128s signature [[FIPS205](#FIPS205)] |      4      |              |      10480      |
+|   `2AAJ`   | SLH-DSA-SHA2-256s signature [[FIPS205](#FIPS205)] |      4      |              |      39728      |
+|   `2AAK`   | SLH-DSA-SHAKE-256s signature [[FIPS205](#FIPS205)] |      4      |              |      39728      |
+|            |  Basic Four Character Codes with 2 Lead Bytes  |             |              |              |
+|   `3AAA`   | ML-DSA-44 public verification key [[FIPS204](#FIPS204)] |      4      |              |      1756      |
+|   `3AAB`   | ML-DSA-87 signature [[FIPS204](#FIPS204)] |      4      |              |      6176      |
+|   `3AAC`   | SLH-DSA-SHA2-256s public verification key [[FIPS205](#FIPS205)] |      4      |              |      92      |
+|   `3AAD`   | SLH-DSA-SHAKE-256s public verification key [[FIPS205](#FIPS205)] |      4      |              |      92      |
 |            |  Variable Raw Size Codes  |             |              |              |
 |   `1AAO`   | Escape code for escaping special map field values |      4      |              |      4      |
 |   `1AAP`   | Empty value for nonce or string |      4      |              |      4      |
@@ -1085,6 +1126,26 @@ A compliant KERI/ACDC genus MUST have the following codes in its contextual inde
 |           | Indexed Eight Character Codes      |             |              |              |              |
 |`3A######` | Ed448 indexed signature big dual      |      8      |       3      |       3      |      160     |
 |`3B######` | Ed448 indexed signature big current only |      8      |       3      |       3      |      160     |
+|`3C######` | ML-DSA-65 indexed signature big dual |      8      |       3      |       3      |      4420     |
+|`3D######` | ML-DSA-65 indexed signature big current only |      8      |       3      |       3      |      4420     |
+|`3E######` | SLH-DSA-SHA2-192s indexed signature big dual |      8      |       3      |       3      |      21640     |
+|`3F######` | SLH-DSA-SHA2-192s indexed signature big current only |      8      |       3      |       3      |      21640     |
+|`3G######` | SLH-DSA-SHAKE-192s indexed signature big dual |      8      |       3      |       3      |      21640     |
+|`3H######` | SLH-DSA-SHAKE-192s indexed signature big current only |      8      |       3      |       3      |      21640     |
+|           | Indexed Eight Character Codes with 1 Lead Byte |             |              |              |              |
+|`8A######` | ML-DSA-44 indexed signature big dual |      8      |       3      |       3      |      3236     |
+|`8B######` | ML-DSA-44 indexed signature big current only |      8      |       3      |       3      |      3236     |
+|`8C######` | SLH-DSA-SHA2-128s indexed signature big dual |      8      |       3      |       3      |      10484     |
+|`8D######` | SLH-DSA-SHA2-128s indexed signature big current only |      8      |       3      |       3      |      10484     |
+|`8E######` | SLH-DSA-SHAKE-128s indexed signature big dual |      8      |       3      |       3      |      10484     |
+|`8F######` | SLH-DSA-SHAKE-128s indexed signature big current only |      8      |       3      |       3      |      10484     |
+|`8G######` | SLH-DSA-SHA2-256s indexed signature big dual |      8      |       3      |       3      |      39732     |
+|`8H######` | SLH-DSA-SHA2-256s indexed signature big current only |      8      |       3      |       3      |      39732     |
+|`8I######` | SLH-DSA-SHAKE-256s indexed signature big dual |      8      |       3      |       3      |      39732     |
+|`8J######` | SLH-DSA-SHAKE-256s indexed signature big current only |      8      |       3      |       3      |      39732     |
+|           | Indexed Eight Character Codes with 2 Lead Bytes |             |              |              |              |
+|`9A######` | ML-DSA-87 indexed signature big dual |      8      |       3      |       3      |      6180     |
+|`9B######` | ML-DSA-87 indexed signature big current only |      8      |       3      |       3      |      6180     |
 
 Legend:
 
@@ -1505,6 +1566,18 @@ Consequently, one way to provide some degree of post-quantum security is to hide
 
 To elaborate, a post-quantum attack that may practically invert the one-way public key generation (ECC scalar multiplication) function using quantum computation must first invert the public key's digest using non-quantum computation. Pre-quantum cryptographic strength is, therefore, not weakened post-quantum. A surprise quantum capability may no longer be a vulnerability. Strong one-way hash functions, such as 256-bit (32-byte) Blake2, Blake3, and SHA3, with 128 bits of pre-quantum strength, maintain that strength post-quantum. Furthermore, hiding the pre-rotation public keys does not impose any additional storage burden on the controller because the controller must always be able to reproduce or recover the associated private keys to sign the associated rotation operation. Hidden public keys may be compactly expressed as Base64 encoded qualified public keys' digests (hidden), where the digest function is indicated in the derivation code.
 
+#### Post-Quantum Cryptographic Primitives
+
+Hiding pre-rotated keys behind digests, as described above, protects the next key pair but does not protect the currently exposed one. A protocol that must resist a quantum adversary in the present tense needs post-quantum signature Primitives directly. The tables in Annex A define codes for the NIST post-quantum signature schemes standardized so far: ML-DSA [[FIPS204](#FIPS204)] and SLH-DSA [[FIPS205](#FIPS205)]. The two mechanisms are complementary, not alternatives; pre-rotation continues to provide defense in depth for whichever signature scheme is in use.
+
+Both schemes produce signatures of a fixed raw size for each parameter set, so every post-quantum signature code defined in this specification is a fixed-size code. The code alone tells a parser how many bytes to consume and which verification routine to dispatch to, and a signature can occupy a fixed-size field in an enclosing verifiable data structure.
+
+ML-DSA has the more compact Primitives of the two, with signatures from 2,420 to 4,627 bytes in the parameter sets defined here. SLH-DSA is the more conservative, resting only on the security of its underlying hash function, but its signatures range from 7,856 to 29,792 bytes. That makes it impractical for high-volume streams and appropriate mainly for long-lived, infrequently exercised keys. ML-DSA's Module-LWE construction and SLH-DSA's hash-based construction rest on unrelated security assumptions, so a weakness found in one does not imply a weakness in the other.
+
+No code in this specification encodes a digest of a post-quantum public key as a distinct Primitive type. A digest of a public key is encoded with the ordinary digest codes, such as `E` for Blake3-256, and the context in which the Primitive appears determines whether that digest is a SAID, an AID, a hidden pre-rotation commitment, or a digest of a public key. Introducing a code that means "digest of a public key" would mix the semantics of a Primitive's use with the semantics of its cryptographic algorithm, which this specification otherwise avoids. It would also not achieve its apparent purpose. A compact identifier derived from a large post-quantum public key is already available: an identifier whose derivation is a digest of an inception event, rather than a digest of a key, is exactly as compact, requires no new code, and carries the key itself in an event that is already defined.
+
+Controller and witness signatures on KERI events are carried in indexed signature groups. The indexed code table therefore also defines indexed signature codes for every post-quantum signature scheme, using the eight-character indexed schemes described under Indexed codes, so that a post-quantum key can sign through the same path as any other key.
+
 ## Bibliography
 
 ### Normative section
@@ -1530,6 +1603,12 @@ To elaborate, a post-quantum attack that may practically invert the one-way publ
 <a id="JSON">23</a><a id="ref23"></a>. IETF <a id="RFC8259">RFC-8259</a> [JSON](https://www.rfc-editor.org/rfc/rfc8259.txt). T. Bray, Ed. 2017-12. Status:  Standards Track
 
 <a id="BLAKE3">24</a><a id="ref24"></a>. Blake3 Specification [Blake3](https://github.com/BLAKE3-team/BLAKE3-specs). J. O’Connor; J-P. Aumasson; S. Neves ; Z. Wilcox-O’Hearn.  Version 20211102173700.
+
+<a id="FIPS203">25</a><a id="ref25"></a>. FIPS 203, Module-Lattice-Based Key-Encapsulation Mechanism Standard. National Institute of Standards and Technology, August 2024. https://doi.org/10.6028/NIST.FIPS.203
+
+<a id="FIPS204">26</a><a id="ref26"></a>. FIPS 204, Module-Lattice-Based Digital Signature Standard. National Institute of Standards and Technology, August 2024. https://doi.org/10.6028/NIST.FIPS.204
+
+<a id="FIPS205">27</a><a id="ref27"></a>. FIPS 205, Stateless Hash-Based Digital Signature Standard. National Institute of Standards and Technology, August 2024. https://doi.org/10.6028/NIST.FIPS.205
 
 ### Informative section
 
